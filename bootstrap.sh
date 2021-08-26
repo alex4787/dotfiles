@@ -8,9 +8,18 @@ ln -sf ~/dotfiles/.config/nvim ~/.config/nvim
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
+# oh-my-zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# pyenv
+curl https://pyenv.run | bash
+
 # Neovim (nightly)
-sudo apt install neovim
+git clone https://github.com/neovim/neovim $HOME/.nvim
+cd $HOME/.nvim/neovim && sudo make CMAKE_BUILD_TYPE=Release install
 
 if [ $SPIN ]; then
 	echo ""
 fi
+
+exec $SHELL
