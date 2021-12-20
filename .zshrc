@@ -42,7 +42,24 @@ alias dup="dev up"
 alias gpdus="git checkout master && git pull origin master && dev up && dev s"
 alias grbm="git fetch origin master && git rebase origin/master"
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+rsync3000a () {
+	rsync -a student@134.117.129.42:~/assignments/assignment"$1"/alexchan3-comp3000-assign"$1".txt ~/OneDrive\ -\ Carleton\ University/COMP\ 3000/assignments
+}
+rsync3000t () {
+	rsync -a student@134.117.129.42:~/tutorials/tutorial0"$1"/alexchan3-comp3000-t"$1".txt ~/OneDrive\ -\ Carleton\ University/COMP\ 3000/tutorials
+}
+rsync2404 () {
+	rsync -a ~/OneDrive\ -\ Carleton\ University/COMP\ 2404/src/ student@134.117.129.42:~/2404src
+}
 work () {
+	dev cd shopify
+	dev up
+	ttab 'dev hedwig enqueuer'
+	ttab 'ENABLE_CAPTAIN_HOOK=true dev hedwig worker'
+	ttab -d ~/src/github.com/Shopify/captain-hook 'dus'
+	dev s
+}
+work2 () {
   dev cd shopify
   ttab -t 'graphiql' -d ~/src/github.com/Shopify/shopify-graphiql-app 'dev up; ttab -t graphiql-console dev console; open mysql://root:@shopify-graphiql-app.railgun:3306/shopify-graphiql-app_development -a Sequel\ Ace; ttab -w nvim; dev s'
   dev up
@@ -68,12 +85,24 @@ projects () {
 }
 alias font-patcher="python3 ~/Documents/font-patcher"
 onedrive () {
-    if [ $# -eq 0 ]
-    then
-      cd /Users/alexchan/"OneDrive - Carleton University"
-    else
-      cd /Users/alexchan/"OneDrive - Carleton University"/"COMP_$1"
-    fi
+	if [ $# -eq 0 ]
+	then
+		cd /Users/alexchan/"OneDrive - Carleton University"
+	else
+		cd /Users/alexchan/"OneDrive - Carleton University"/"COMP $1/"
+	fi
+}
+oni2-update () {
+	cd ~/src/github.com/oni2	
+	git pull
+	esy install
+	esy bootstrap
+	esy build
+	esy '@release' install
+	esy '@release' run --help
+	esy '@release' create
+	./_release/Onivim2.app/Contents/MacOS/Oni2 -f --checkhealth
+	cp -R _release/Onivim2.app /Applications
 }
 
 # Bindkeys
@@ -201,3 +230,5 @@ source $ZSH/oh-my-zsh.sh
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 
 [[ -f /opt/dev/sh/chruby/chruby.sh ]] && type chruby >/dev/null 2>&1 || chruby () { source /opt/dev/sh/chruby/chruby.sh; chruby "$@"; }
+
+[[ -x /usr/local/bin/brew ]] && eval $(/usr/local/bin/brew shellenv)
