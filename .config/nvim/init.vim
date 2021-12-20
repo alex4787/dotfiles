@@ -98,7 +98,10 @@ set omnifunc=syntaxcomplete#Complete
 set laststatus=2
 set autoread
 set colorcolumn=+1
-set textwidth=120
+set colorcolumn=120
+
+autocmd FileType text setlocal wrap
+autocmd FileType text setlocal linebreak
 
 autocmd FileType tagbar,nerdtree,startify setlocal signcolumn=no
 let NERDTreeShowLineNumbers=1
@@ -142,6 +145,7 @@ au FileType eruby let b:AutoPairs = AutoPairsDefine({'<%' : '%>', '<%=' : '%>'})
 
 nnoremap <silent> <expr> <c-[> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Buffers\<cr>"
 nnoremap <silent> <expr> <c-p> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":GFiles\<cr>"
+nnoremap <silent> <expr> <c-\> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":GFiles?\<cr>"
 nnoremap <silent> <expr> <c-]> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
 nnoremap <C-f> :Rg <cr>
 nnoremap <silent> <expr> <c-L> g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTree<CR>"
