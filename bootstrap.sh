@@ -1,6 +1,5 @@
 #!/bin/bash
 
-ln -sf ~/dotfiles/.zshrc ~/.zshrc
 ln -sf ~/dotfiles/.config/nvim ~/.config/nvim
 ln -sf ~/dotfiles/iterm ~/iterm
 ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
@@ -19,6 +18,9 @@ fi
 # oh-my-zsh
 export ZSH="$HOME/.oh-my-zsh"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+
+# oh-my-zsh installation replaces .zshrc
+ln -sf ~/dotfiles/.zshrc ~/.zshrc
 
 # zsh plugins
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
