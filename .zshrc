@@ -30,7 +30,7 @@ PATH="usr/local/bin/vim:$PATH"
 PATH="$HOME/.gem/ruby/2.7.1/bin:$PATH"
 
 # Chruby
-source /usr/local/share/chruby/chruby.sh
+# source /usr/local/share/chruby/chruby.sh
 
 # Dev Tool
 [ -f /opt/dev/dev.sh ] && source /opt/dev/dev.sh
@@ -232,3 +232,5 @@ export PATH="/usr/local/opt/llvm/bin:$PATH"
 [[ -f /opt/dev/sh/chruby/chruby.sh ]] && type chruby >/dev/null 2>&1 || chruby () { source /opt/dev/sh/chruby/chruby.sh; chruby "$@"; }
 
 [[ -x /usr/local/bin/brew ]] && eval $(/usr/local/bin/brew shellenv)
+
+[[ -x /opt/homebrew/bin/brew ]] && eval $(/opt/homebrew/bin/brew shellenv)
