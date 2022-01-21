@@ -43,6 +43,7 @@ fi
 
 if [ $SPIN ]; then
 	ln -sf ~/dotfiles/.gitconfig-spin ~/.gitconfig
+	git clone https://github.com/burke/minidev.git ~/src/github.com/burke/minidev
 else
 	ln -sf ~/dotfiles/.gitconfig ~/.gitconfig
 fi

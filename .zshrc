@@ -33,7 +33,11 @@ PATH="$HOME/.gem/ruby/2.7.1/bin:$PATH"
 # source /usr/local/share/chruby/chruby.sh
 
 # Dev Tool
-[ -f /opt/dev/dev.sh ] && source /opt/dev/dev.sh
+if [ -f /opt/dev/dev.sh ]; then
+  source /opt/dev/dev.sh
+elif [ -f ~/src/github.com/burke/minidev/dev.sh ]; then
+  source ~/src/github.com/burke/minidev/dev.sh
+fi
 if [ -e /Users/alexchan/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/alexchan/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 
 # Shell login functions
