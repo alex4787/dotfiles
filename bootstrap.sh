@@ -10,6 +10,12 @@ ln -sf ~/dotfiles/.p10k.zsh ~/.p10k.zsh
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
+# zsh
+if ! command -v zsh &> /dev/null; then
+  sudo apt-get install -y zsh
+	chsh -s $(which zsh)
+fi
+
 # oh-my-zsh
 export ZSH="$HOME/.oh-my-zsh"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
