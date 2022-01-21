@@ -35,9 +35,11 @@ if ! command -v fzf &> /dev/null; then
 fi
 
 # Neovim (nightly)
-sudo apt purge neovim
-sudo add-apt-repository ppa:neovim-ppa/unstable
-sudo apt update && sudo apt install neovim -y
+if ! command -v nvim &> /dev/null; then
+	sudo apt purge neovim
+	sudo add-apt-repository ppa:neovim-ppa/unstable
+	sudo apt update && sudo apt install neovim -y
+fi
 
 if [ $SPIN ]; then
 	ln -sf ~/dotfiles/.gitconfig-spin ~/.gitconfig
