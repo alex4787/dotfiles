@@ -4,7 +4,7 @@
 #echo "\033[1mCommands\033[0m: \033[0;34mgithub \033[0m"
 #echo "\033[1mCommands\033[0m: \033[0;34mprojects \033[0m"
 
-export PATH="/usr/local/bin:/usr/bin:$PATH"
+export PATH="/usr/local/bin:/usr/bin:/usr/local/mysql/bin:$PATH"
 
 export EDITOR="code"
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -46,9 +46,9 @@ if [ -e /Users/alexchan/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/alexc
 # Shell login functions
 alias dus="dev up && dev s"
 alias dup="dev up"
-alias gpdus="git checkout master && git pull origin master && dev up && dev s"
-alias grbm="git fetch origin master && git rebase origin/master"
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias killlogi="killall LogiMgrDaemon"
+alias auth="dev vault tls production shopify certify/elasticsearch/client/intermediate/v2 es-client --cn arrive-server-production-unrestricted && dev vault tls production shopify certify/elasticsearch/client/intermediate/v2 es-client --cn shop-discovery-pipeline-staging-unrestricted"
 rsync3000a () {
 	rsync -a student@134.117.129.42:~/assignments/assignment"$1"/alexchan3-comp3000-assign"$1".txt ~/OneDrive\ -\ Carleton\ University/COMP\ 3000/assignments
 }
@@ -236,7 +236,7 @@ source $ZSH/oh-my-zsh.sh
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 
-[[ -f /opt/dev/sh/chruby/chruby.sh ]] && type chruby >/dev/null 2>&1 || chruby () { source /opt/dev/sh/chruby/chruby.sh; chruby "$@"; }
+[[ -f /opt/dev/sh/chruby/chruby.sh ]] && { type chruby >/dev/null 2>&1 || chruby () { source /opt/dev/sh/chruby/chruby.sh; chruby "$@"; } }
 
 [[ -x /usr/local/bin/brew ]] && eval $(/usr/local/bin/brew shellenv)
 

@@ -26,11 +26,13 @@ Plug 'mattn/emmet-vim'
 Plug 'preservim/nerdtree' |
       \ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'andymass/vim-matchup'
+Plug 'github/copilot.vim'
 call plug#end()
 
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained",
+  ensure_installed = "all",
+	ignore_install = { "phpdoc" },
   highlight = {
     enable = true,
   },

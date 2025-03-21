@@ -20,7 +20,8 @@ if exists("g:loaded_webdevicons")
   call webdevicons#refresh()
 endif
 
-let s:palette = edge#get_palette(g:edge_style)
+let s:configuration = edge#get_configuration()
+let s:palette = edge#get_palette(s:configuration.style, s:configuration.dim_foreground, s:configuration.colors_override)
 function! DeviconsColors(config, my_colors)
   let colors = keys(a:config)
   augroup devicons_colors
